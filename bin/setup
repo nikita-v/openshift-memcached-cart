@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+set -u
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+for dir in pid tmp env; do
+	mkdir -p $dir
+done
+
+echo $(pwd)/versions/1.4.15/bin > env/OPENSHIFT_MEMCACHED_PATH_ELEMENT
