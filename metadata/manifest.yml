@@ -1,0 +1,25 @@
+Name: memcached
+Cartridge-Short-Name: MEMCACHED
+Display-Name: Memcached
+Version: "1.4.15"
+Website: http://memcached.org
+Cartridge-Version: 0.1.0
+Cartridge-Vendor: nikitav
+Categories:
+  - service
+  - cache
+  - embedded
+Provides:
+  - memcached-1.4
+  - memcached
+Scaling:
+  Min: 1
+  Max: -1
+Endpoints:
+  - Private-IP-Name:   HOST
+    Private-Port-Name: PORT
+    Private-Port:      11211
+    Public-Port-Name:  PROXY_PORT
+Publishes:
+  publish-db-connection-info:
+    Type: "ENV:NET_TCP:db:connection-info"

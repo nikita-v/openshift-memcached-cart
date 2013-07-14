@@ -1,0 +1,81 @@
+#!/bin/bash
+
+pid=$OPENSHIFT_MEMCACHED_DIR/pid/memcached.pid
+parameters="-l $OPENSHIFT_MEMCACHED_HOST -p $OPENSHIFT_MEMCACHED_PORT -d -P $pid"
+additional_parameters_file=$OPENSHIFT_REPO_DIR/.openshift/memcached_additional_parameters
+
+function status() {
+    if [ -f $pid ]; then
+        return 0
+    fi
+    return 1
+}
+
+function start() {
+    if ! [ -f $pid ]; then
+        additional_parameters=""
+        if [ -f $additional_parameters_file]
+            additional_parameters=$(additional_parameters_file)
+        fi
+        eval "memcached $parameters $additional_parameters"
+    fi
+}
+
+function stop() {
+    if [ -f $pid ]; then
+        kill $(cat $pid)
+    fi
+}
+
+function restart() {
+    stop
+    start
+}
+
+function update() {
+    stop
+    ./.openshift/action_hooks/build
+}
+
+function build() {
+    echo
+}
+
+function post-deploy() {
+    echo
+}
+
+function pre-build() {
+    echo
+}
+
+function tidy() {
+    echo
+}
+
+#
+#  main():
+#
+
+# Ensure arguments.
+if ! [ $# -gt 0 ]; then
+    echo "Usage: $0 [start|restart|graceful|graceful-stop|stop|status|update|use-source]"
+    exit 1
+fi
+
+# Source utility functions.
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+# Handle commands.
+case "$1" in
+    start)               start       ;;
+    restart|graceful)    restart     ;;
+    graceful-stop|stop)  stop        ;;
+    status)              status      ;;
+    build)               build       ;;
+    pre-build)           pre-build   ;;
+    post-deploy)         post-deploy ;;
+    tidy)                tidy        ;;
+    update)              update      ;;
+    *)
+esac
