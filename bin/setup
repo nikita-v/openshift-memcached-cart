@@ -8,4 +8,11 @@ for dir in pid tmp env; do
 	mkdir -p $dir
 done
 
+<<<<<<< HEAD
 echo $(pwd)/versions/1.4.15/bin > env/OPENSHIFT_MEMCACHED_PATH_ELEMENT
+=======
+echo $(pwd)/versions/1.4.15/bin > env/OPENSHIFT_MEMCACHED_PATH_ELEMENT
+client_result "Connection info:"
+client_result "OPENSHIFT_MEMCACHED_HOST = $OPENSHIFT_MEMCACHED_HOST"
+client_result "OPENSHIFT_MEMCACHED_PORT = $OPENSHIFT_MEMCACHED_PORT"
+>>>>>>> 9af3dfa4d5a354a7fa3be794ce7159e0e6bfbdcb

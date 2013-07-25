@@ -18,7 +18,7 @@ Scaling:
 Endpoints:
   - Private-IP-Name:   HOST
     Private-Port-Name: PORT
-    Private-Port:      11211
+    Private-Port:      16211
     Public-Port-Name:  PROXY_PORT
 Publishes:
   publish-db-connection-info:
