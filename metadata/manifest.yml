@@ -7,7 +7,7 @@ Cartridge-Version: 0.1.0
 Cartridge-Vendor: nikitav
 Categories:
   - service
-  - cache
+  - database
   - embedded
 Provides:
   - memcached-1.4

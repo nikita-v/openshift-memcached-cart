@@ -15,7 +15,7 @@ function start() {
     if ! [ -f $pid ]; then
         additional_parameters=""
         if [ -f $additional_parameters_file]; then
-            additional_parameters=$(additional_parameters_file)
+            additional_parameters=$(cat additional_parameters_file)
         fi
         eval "memcached $parameters $additional_parameters"
     fi
@@ -30,11 +30,6 @@ function stop() {
 function restart() {
     stop
     start
-}
-
-function update() {
-    stop
-    ./.openshift/action_hooks/build
 }
 
 function build() {
@@ -76,6 +71,5 @@ case "$1" in
     pre-build)           pre-build   ;;
     post-deploy)         post-deploy ;;
     tidy)                tidy        ;;
-    update)              update      ;;
     *)
 esac
