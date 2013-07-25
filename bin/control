@@ -14,7 +14,7 @@ function status() {
 function start() {
     if ! [ -f $pid ]; then
         additional_parameters=""
-        if [ -f $additional_parameters_file]; then
+        if [ -f $additional_parameters_file ]; then
             additional_parameters=$(cat additional_parameters_file)
         fi
         eval "memcached $parameters $additional_parameters"
