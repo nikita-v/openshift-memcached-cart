@@ -73,8 +73,4 @@ case "$1" in
     post-deploy)         post-deploy ;;
     tidy)                tidy        ;;
     *)
-<<<<<<< HEAD
 esac
-=======
-esac
->>>>>>> 9af3dfa4d5a354a7fa3be794ce7159e0e6bfbdcb
